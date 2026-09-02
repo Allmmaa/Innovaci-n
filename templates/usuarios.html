@@ -1,9 +1,9 @@
+
 <section class="header-section">
     <h2>Usuarios registrados</h2>
     <input type="text" placeholder="Buscar por usuario o email...">
 </section>
 
-<!-- PROGRAMAR BUCLE DE USUARIOS CON my.obtener_usuarios() -->
 <table>
     <thead>
         <tr>
@@ -12,11 +12,15 @@
             <th>Aplicaciones</th>
         </tr>
     </thead>
+
     <tbody>
+        {% for usuario in usuarios %}
         <tr>
-            <td>Valentina Ramos</td>
-            <td>v.ramos@medclinic.com</td>
-            <td>MedTrack Pro</td>
+            <td>{{ usuario.nombre }}</td>
+            <td>{{ usuario.email }}</td>
+            <td>{{ usuario.aplicacion }}</td>
         </tr>
+        {% endfor %}
     </tbody>
 </table>
+

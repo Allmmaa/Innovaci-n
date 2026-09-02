@@ -1,0 +1,92 @@
+
+.hero {
+    text-align: center;
+    padding: 70px 20px;
+    background-color: #1d4ed8;
+}
+
+.hero h1 {
+    margin: 0 0 15px;
+    font-size: 42px;
+}
+
+.hero p {
+    margin: 0 auto 30px;
+    max-width: 700px;
+    font-size: 18px;
+    color: #61b82f;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.actions button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    background-color: #2563eb;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.actions button:hover {
+    background-color: #1d4ed8;
+}
+
+.kpis {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 40px;
+}
+
+.card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.kpis .card h3 {
+    margin: 0 0 10px;
+    font-size: 32px;
+    color: #2563eb;
+}
+
+.kpis .card p {
+    margin: 0;
+    color: #666;
+}
+
+.features {
+    padding: 30px 40px 60px;
+}
+
+.features h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.grid .card {
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.grid .card h3 {
+    margin: 0;
+    font-size: 18px;
+}
