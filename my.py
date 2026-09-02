@@ -1,26 +1,27 @@
-import requests
+import os
+from supabase import create_client, Client
 
-# 1. Guarda solo el ID de tu proyecto (sin https:// ni .supabase.co)
-project_id = "yczqvokerabfhuihreju" 
-KEY = "TU_KEY_AQUI"
-# 2. Construye la URL correctamente
-url = f"https://{project_id}.supabase.co/rest/v1/"
+SUPABASE_URL = os.getenv("SUPABASE_URL", "https://yczqvokerabfhuihreju.supabase.co")
+# PEGA AQUÍ LA CLAVE CORRECTA QUE COPIASTE DE SUPABASE:
+SUPABASE_KEY = os.getenv("SUPABASE_KEY", "sb_publishable_--MAkN6lsNqrfIJABtCV8w_zvTyUQ9e")
 
-headers = {
-    "apikey": api_key,
-    "Authorization": f"Bearer {api_key}"
-}
+supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
-try:
-    response = requests.get(url, headers=headers)
-    
-    # 3. Solo 200 (OK) indica una conexión y autenticación exitosas
-    if response.status_code == 200:
-        print("Conexión exitosa a la API de Supabase.")
-    elif response.status_code == 401:
-        print("Error de autenticación (401): Revisa tu API Key.")
-    else:
-        print(f"Error en la conexión. Código HTTP: {response.status_code}")
-        
-except requests.exceptions.RequestException as e:
-    print(f"Error al intentar conectar: {e}")
+
+def obtener_usuarios():
+    """Obtiene la lista de usuarios."""
+    return supabase.table("Usuario").select("*").execute()
+
+
+def obtener_aplicaciones():
+    """Obtiene la lista de aplicaciones."""
+    return supabase.table("aplicacion").select("*").execute()
+
+
+def obtener_registro_accesos():
+    """Obtiene el historial de accesos uniendo Usuario y aplicacion."""
+    return supabase.table("Acceso").select(
+        "id_usuario, id_aplicacion, fecha_acceso, tipo_servicio, "
+        "Usuario(nombre, email), "
+        "aplicacion(nombre, sector)"
+    ).execute()

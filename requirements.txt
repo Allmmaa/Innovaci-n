@@ -1,0 +1,3 @@
+supabase
+pip install supabase
+pip install flask
