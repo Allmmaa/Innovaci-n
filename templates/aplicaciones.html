@@ -1,18 +1,41 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='aplicaciones.css') }}">
+</head>
 <section class="header-section">
+    <p class="eyebrow">APLICACIONES</p>
     <h2>Aplicaciones de la plataforma</h2>
-    <input type="text" placeholder="Buscar aplicaciones...">
+    <p class="subtitle">Cada aplicación puede ser utilizada por miles de usuarios registrados</p>
+
+    <input type="text" id="buscador" placeholder="Buscar aplicación...">
+
     <div class="filters">
-        <button class="active">Todas</button>
-        <button>Salud</button>
-        <button>Educación</button>
-        <button>Finanzas</button>
+        <button class="active" data-filtro="todos">Todos</button>
+        <button data-filtro="salud">Salud</button>
+        <button data-filtro="educacion">Educación</button>
+        <button data-filtro="finanzas">Finanzas</button>
+        <button data-filtro="retail">Retail</button>
+        <button data-filtro="logistica">Logística</button>
+        <button data-filtro="gobierno">Gobierno</button>
     </div>
 </section>
 
-<!-- PROGRAMAR BUCLE DE APLICACIONES CON my.obtener_aplicaciones() -->
 <section class="grid-apps">
-    <div class="app-card">
-        <h3>MedTrack Pro</h3>
-        <span class="badge">Salud</span>
+    {% for app in apps %}
+    <div class="app-card" data-categoria="{{ app.categoria|lower }}">
+        <div class="app-card-top">
+            <span class="app-icon">{{ app.icono }}</span>
+            <span class="badge badge-{{ app.categoria|lower }}">{{ app.categoria }}</span>
+        </div>
+        <h3>{{ app.nombre }}</h3>
+        <p class="app-usuarios">{{ app.cantidad_usuarios }} usuario{{ 's' if app.cantidad_usuarios != 1 else '' }}</p>
+        <div class="app-planes">
+            {% for plan in app.planes %}
+            <span class="plan plan-{{ plan|lower }}">{{ plan }}</span>
+            {% endfor %}
+        </div>
     </div>
+    {% endfor %}
 </section>

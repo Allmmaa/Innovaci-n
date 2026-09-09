@@ -1,20 +1,20 @@
 
 .hero {
     text-align: center;
-    padding: 70px 20px;
-    background-color: #1d4ed8;
+    padding: 80px 30px;
+    background-color: #8799ca;
 }
 
 .hero h1 {
     margin: 0 0 15px;
-    font-size: 42px;
+    font-size: 50px;
 }
 
 .hero p {
     margin: 0 auto 30px;
     max-width: 700px;
-    font-size: 18px;
-    color: #61b82f;
+    font-size: 20px;
+    color: #fcfcfc; 
 }
 
 .actions {
@@ -27,7 +27,7 @@
     padding: 12px 24px;
     border: none;
     border-radius: 6px;
-    background-color: #2563eb;
+    background-color: rgb(2, 2, 2);
     color: white;
     font-size: 16px;
     cursor: pointer;

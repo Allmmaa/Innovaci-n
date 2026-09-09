@@ -2,16 +2,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="index.css">
-
+<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}"> 
 <section class="hero">
+</head>
 
-    <h1>AHRE inteligente de aplicaciones y usuarios</h1>
-    <p>Innovasoft centraliza el acceso de los clientes a todas las aplicaciones de la plataforma...</p>
+    <body>
+
+    <h1>Gestion inteligente de aplicaciones y usuarios</h1>
+    <p>InnovaSoft centraliza el acceso de los clientes a todas las aplicaciones de la plataforma,
+    con control total sobre usuarios, servicios contratados y sectores atendidos.</p>
+
     <div class="actions">
         <button onclick="location.href='aplicaciones.html'">Ver aplicaciones</button>
         <button onclick="location.href='usuarios.html'">Ver usuarios</button>
+        <button onclick="location.href='login.html'">iniciar sesion</button>
     </div>
+
 </section>
 
 <!-- MÉTRICAS -->
@@ -23,10 +29,10 @@
     </div>
     <div class="card">
         <h3>8</h3>
-        <p>Sectores atendidos</p>
+        <p>Sectores atendidos</p> 
     </div>
     <div class="card">
-        <!-- PROGRAMAR: len(obtener_usuarios().data) -->
+       
         <h3>12</h3>
         <p>Usuarios registrados</p>
     </div>
@@ -49,4 +55,5 @@
 
 </section>
 
-</head>
+</body>
+</html>

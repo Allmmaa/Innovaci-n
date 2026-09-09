@@ -1,0 +1,248 @@
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background-color: #f4f8fb;
+    margin: 0;
+    padding: 40px;
+    color: #425466;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.header-section h2 {
+    margin: 0;
+    color: #1e3a5f;
+    font-size: 28px;
+}
+
+.header-section p {
+    margin: 6px 0 0 0;
+    color: #6b7c93;
+    font-size: 14px;
+}
+
+.header-section input {
+    width: 280px;
+    padding: 12px 16px;
+    border: 1px solid #b9dff2;
+    border-radius: 10px;
+    outline: none;
+    font-size: 14px;
+    background-color: #ffffff;
+}
+
+.header-section input:focus {
+    border-color: #55bde8;
+    box-shadow: 0 0 0 3px rgba(85, 189, 232, 0.15);
+}
+
+.table-container {
+    background: #ffffff;
+    border-radius: 15px;
+    padding: 10px;
+    box-shadow: 0 4px 15px rgba(67, 155, 190, 0.10);
+    overflow: hidden;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: #e8f7fc;
+}
+
+th {
+    color: #24789b;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: left;
+    padding: 16px 20px;
+}
+
+td {
+    padding: 16px 20px;
+    border-top: 1px solid #edf5f8;
+    color: #425466;
+    font-size: 14px;
+}
+
+tbody tr:hover {
+    background-color: #f5fbfd;
+}
+/* FONDO DEL MODAL */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.5);
+    backdrop-filter: blur(6px);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* TARJETA DEL MODAL */
+.modal-card {
+    background: #ffffff;
+    width: 100%;
+    max-width: 420px;
+    padding: 36px 32px;
+    border-radius: 20px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+    position: relative;
+    box-sizing: border-box;
+}
+
+.close-btn {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    font-size: 22px;
+    color: #94a3b8;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-btn:hover {
+    color: #334155;
+}
+
+/* ENCABEZADO */
+.modal-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.brand-icon {
+    width: 48px;
+    height: 48px;
+    background-color: #eff6ff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px auto;
+}
+
+.modal-header h3 {
+    margin: 0 0 6px 0;
+    font-size: 22px;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.modal-header p {
+    margin: 0;
+    font-size: 13px;
+    color: #64748b;
+}
+
+/* INPUTS Y FORMULARIO */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #475569;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    font-size: 14px;
+    box-sizing: border-box;
+    outline: none;
+    transition: all 0.2s;
+}
+
+.form-group input:focus {
+    border-color: #0284c7;
+    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+}
+
+/* CAMPO DE CONTRASEÑA CON BOTÓN VER */
+.password-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    background: none;
+    border: none;
+    font-size: 12px;
+    font-weight: 600;
+    color: #0284c7;
+    cursor: pointer;
+}
+
+/* BOTÓN DE INGRESO */
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #38bdf8;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 6px;
+}
+
+.submit-btn:hover {
+    background-color: #0284c7;
+}
+
+/* CAJA DE CREDENCIALES DE PRUEBA */
+.demo-credentials {
+    margin-top: 24px;
+    padding: 12px 16px;
+    background-color: #f1f5f9;
+    border-radius: 10px;
+    font-size: 12px;
+    color: #475569;
+}
+
+.credentials-title {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #334155;
+}
+
+.credentials-detail {
+    display: flex;
+    justify-content: space-between;
+}
