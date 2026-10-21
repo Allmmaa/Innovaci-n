@@ -8,7 +8,34 @@
 </head>
 <body>
 
-    <main class="container">
+<header class="header">
+    <div class="logo">
+        <div class="arriba">
+            <h2>InnovaSoft</h2>
+            <p>Software · Ideas · Soluciones</p>
+        </div>
+    </div>
+
+    <nav>  
+        <a href="{{ url_for('home') }}">Inicio</a>
+        <a href="{{ url_for('aplicaciones') }}">Aplicaciones</a>
+
+        <!-- SOLO EL ADMINISTRADOR PUEDE VER ESTAS OPCIONES -->
+        {% if session.get('es_admin') %}
+            <a href="{{ url_for('usuarios') }}">Usuarios</a>
+            <a href="{{ url_for('accesos') }}">Accesos Globales</a>
+        {% else %}
+            <!-- EL USUARIO COMÚN SOLO VE SUS PROPIOS ACCESOS -->
+            <a href="{{ url_for('mis_accesos') }}">Mis Accesos</a>
+        {% endif %}
+    </nav>
+</header>
+
+<main class="container">
+
+    <!-- VALIDACIÓN DE ROL PARA VER ESTA PÁGINA -->
+    {% if session.get('es_admin') %}
+
         <section class="header-section">
             <div>
                 <h2>Usuarios registrados</h2>
@@ -19,31 +46,50 @@
 
         <div class="table-container">
             <table>
-                <thead>
+                <thead> 
                     <tr>
                         <th>Usuario</th>
                         <th>Correo electrónico</th>
-                        <button>          </button>
+                        <th>Rol</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for usuario in usuarios %}
                     <tr>
                         <td>{{ usuario.nombre }}</td>
-                        <td>{{ usuario.email }}</td>                    </tr>
+                        <td>{{ usuario.email }}</td>
+                        <td>
+                            {% if usuario.es_admin %}
+                                <span style="color: #0284c7; font-weight: bold;">Administrador</span>
+                            {% else %}
+                                <span>Empleado</span>
+                            {% endif %}
+                        </td>
+                    </tr>
                     {% endfor %}
                 </tbody>
             </table>
         </div>
-    </main>
 
-    <!-- OVERLAY / CONTENEDOR DEL MODAL -->
+    {% else %}
+
+        <!-- MENSAJE SI UN USUARIO NORMAL INTENTA ENTRAR -->
+        <section class="header-section" style="text-align: center; margin-top: 50px;">
+            <h2>Acceso Restringido</h2>
+            <p>Esta sección es visible únicamente para administradores del sistema.</p>
+            <br>
+            <a href="{{ url_for('aplicaciones') }}" class="submit-btn" style="text-decoration: none; padding: 10px 20px;">Volver a Aplicaciones</a>
+        </section>
+
+    {% endif %}
+
+</main>
+
+<!-- OVERLAY / CONTENEDOR DEL MODAL -->
 <div id="authModal" class="modal-overlay">
     <div class="modal-card">
-        <!-- BOTÓN DE CERRAR (X) -->
         <button class="close-btn" onclick="toggleModal(false)">&times;</button>
         
-        <!-- ENCABEZADO CON LOGO -->
         <div class="modal-header">
             <div class="brand-icon">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2">
@@ -56,17 +102,16 @@
             <p>Ingresá con tus credenciales de InnovaSoft</p>
         </div>
 
-        <!-- FORMULARIO -->
-        <form class="auth-form" onsubmit="event.preventDefault();">
+        <form class="auth-form" action="{{ url_for('login') }}" method="POST">
             <div class="form-group">
                 <label for="email">Correo electrónico</label>
-                <input type="email" id="email" placeholder="tu@correo.com" required>
+                <input type="email" id="email" name="email" placeholder="tu@correo.com" required>
             </div>
 
             <div class="form-group">
                 <label for="password">Contraseña</label>
                 <div class="password-input-wrapper">
-                    <input type="password" id="password" placeholder="••••••••" required>
+                    <input type="password" id="password" name="password" placeholder="••••••••" required>
                     <button type="button" class="toggle-password" onclick="togglePasswordVisibility()">Ver</button>
                 </div>
             </div>
@@ -74,12 +119,11 @@
             <button type="submit" class="submit-btn">Ingresar</button>
         </form>
 
-        <!-- CREDENCIALES DE PRUEBA -->
         <div class="demo-credentials">
             <span class="credentials-title">Credenciales de prueba</span>
             <div class="credentials-detail">
-                <span>📧 v.perez@mediclinic.com</span>
-                <span>🔑 val123</span>
+                <span>📧 admin@innovasoft.com (Admin)</span>
+                <span>🔑 admin123</span>
             </div>
         </div>
     </div>

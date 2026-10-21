@@ -1,59 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}"> 
-<section class="hero">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <title>InnovaSoft</title>
 </head>
 
-    <body>
+<body>
 
-    <h1>Gestion inteligente de aplicaciones y usuarios</h1>
-    <p>InnovaSoft centraliza el acceso de los clientes a todas las aplicaciones de la plataforma,
-    con control total sobre usuarios, servicios contratados y sectores atendidos.</p>
+    <header class="header">
+        <div class="logo">
+            <div class="arriba">
+                <h2>InnovaSoft</h2>
+                <p>Software · Ideas · Soluciones</p>
+            </div>
+        </div>
 
-    <div class="actions">
-        <button onclick="location.href='aplicaciones.html'">Ver aplicaciones</button>
-        <button onclick="location.href='usuarios.html'">Ver usuarios</button>
-        <button onclick="location.href='login.html'">iniciar sesion</button>
-    </div>
+        <nav>
+            {% if session.get("admin") %}
+            <a href="{{ url_for('aplicaciones') }}">Aplicaciones</a>
+            <a href="{{ url_for('usuarios') }}">Usuarios</a>
+            <a href="{{ url_for('accesos') }}">Accesos</a>
+            <a href="{{ url_for('logout') }}">Cerrar sesión</a>
+            {% else %}
+            <a href="{{ url_for('login') }}">Iniciar sesión</a>
+            {% endif %}
+        </nav>
+    </header>
 
-</section>
+    <section class="hero">
 
-<!-- MÉTRICAS -->
-<section class="kpis">
-    <div class="card">
-        <!-- PROGRAMAR: len(obtener_aplicaciones().data) -->
-        <h3>6</h3>
-        <p>Aplicaciones</p>
-    </div>
-    <div class="card">
-        <h3>8</h3>
-        <p>Sectores atendidos</p> 
-    </div>
-    <div class="card">
-       
-        <h3>12</h3>
-        <p>Usuarios registrados</p>
-    </div>
-    <div class="card">
-        <!-- PROGRAMAR: len(obtener_registro_accesos().data) -->
-        <h3>6</h3>
-        <p>Accesos</p>
-    </div>
-</section>
+        {% if session.get("admin") %}
+            <!-- VISTA CUANDO INICIAS SESIÓN -->
+            <h2>Panel de administración</h2>
 
-<!-- TARJETAS DE FUNCIONALIDADES -->
-<section class="features">
-    <h2>Todo lo que necesitás para administrar</h2>
-    <div class="grid">
-        <div class="card"><h3>Gestión de aplicaciones</h3></div>
-        <div class="card"><h3>Administración de usuarios</h3></div>
-        <div class="card"><h3>Control de accesos</h3></div>
-        <div class="card"><h3>Panel unificado</h3></div>
-    </div>
+            <div class="medio">
+                <a href="{{ url_for('aplicaciones') }}">Aplicaciones</a>
+                <a href="{{ url_for('usuarios') }}">Usuarios</a>
+                <a href="{{ url_for('accesos') }}">Accesos</a>
+            </div>
 
-</section>
+        {% else %}
+            <!-- VISTA PÚBLICA (SIN LOGUEAR) -->
+            <h1>
+                Gestión inteligente de
+                <span>aplicaciones y usuarios</span>
+            </h1>
+
+            <p class="descripcion">
+                InnovaSoft centraliza el acceso de los clientes a todas las aplicaciones de
+                la plataforma, con control total sobre usuarios, servicios contratados y
+                sectores atendidos.
+            </p>
+
+            
+        {% endif %}
+
+        <!-- Métricas (Visibles para todos o muévelas dentro del 'if' según prefieras) -->
+        <div class="baja">
+            <div>
+                <h3>{{ num_apps }}</h3>
+                <p>Aplicaciones</p>
+            </div>
+
+            <div>
+                <h3>{{ num_usuarios }}</h3>
+                <p>Usuarios registrados</p>
+            </div>
+
+            <div>
+                <h3>{{ num_accesos }}</h3>
+                <p>Accesos activos</p>
+            </div>
+
+            <div>
+                <h3>{{ num_sectores }}</h3>
+                <p>Sectores</p>
+            </div>
+        </div>
+
+    </section>
 
 </body>
 </html>

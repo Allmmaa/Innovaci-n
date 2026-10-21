@@ -1,59 +1,134 @@
-.login-container {
-    width: 350px;
-    margin: 100px auto;
-    padding: 35px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    text-align: center;
+* {
+    box-sizing: border-box;
 }
 
-.login-container h2 {
-    margin-bottom: 25px;
-    font-size: 28px;
-}
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
 
-.login-container form {
+    background-color: #e9f0f5;
+
     display: flex;
-    flex-direction: column;
-    gap: 15px;
+    justify-content: center;
+    align-items: center;
+
+    height: 100vh;
 }
 
-.login-container input {
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 15px;
+/* ESTE ES EL CUADRADO BLANCO */
+
+.cuadrado {
+    width: 390px;
+
+    background-color: white;
+
+    padding: 30px 32px;
+
+    border-radius: 20px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
-.login-container input:focus {
-    outline: none;
-    border-color: #2563eb;
+/* Logo */
+
+h2 {
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 45px;
+    color: #333;
 }
 
-.login-container button {
-    padding: 12px;
+/* Título */
+
+h1 {
+    text-align: center;
+    font-size: 21px;
+    font-weight: normal;
+    color: #263746;
+}
+
+p {
+    text-align: center;
+    font-size: 12px;
+    color: #5085a5;
+}
+
+hr {
     border: none;
-    border-radius: 6px;
-    background-color: #2563eb;
+    border-top: 1px solid #c9e0ef;
+
+    margin: 25px -32px;
+}
+
+/* Textos */
+
+label {
+    display: block;
+
+    margin-top: 18px;
+    margin-bottom: 7px;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    color: #4d7fa1;
+}
+
+/* Campos */
+
+input {
+    width: 100%;
+    height: 43px;
+
+    padding: 10px 14px;
+
+    border: 1px solid #b7d8ec;
+
+    border-radius: 12px;
+
+    background-color: #f1f8fc;
+
+    outline: none;
+}
+
+input:focus {
+    border-color: #4da0ce;
+}
+
+/* Botón */
+
+button {
+    width: 100%;
+    height: 44px;
+
+    margin-top: 20px;
+
+    border: none;
+    border-radius: 12px;
+
+    background-color: #4da0ce;
+
     color: white;
-    font-size: 16px;
+
+    font-weight: bold;
+
     cursor: pointer;
 }
 
-.login-container button:hover {
-    background-color: #1d4ed8;
-}
+/* Credenciales */
 
-.credentials {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #f4f6f8;
-    border-radius: 6px;
-}
+.credenciales {
+    margin-top: 16px;
 
-.credentials p {
-    margin: 0;
-    font-size: 13px;
-    color: #666;
+    padding: 14px;
+
+    border-radius: 12px;
+
+    background-color: #e0f1fc;
+
+    border: 1px solid #b8dbee;
+
+    font-size: 11px;
+
+    color: #5085a5;
 }

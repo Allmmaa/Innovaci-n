@@ -1,41 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='aplicaciones.css') }}">
+    <title>InnovaSoft - Aplicaciones</title>
 </head>
-<section class="header-section">
-    <p class="eyebrow">APLICACIONES</p>
-    <h2>Aplicaciones de la plataforma</h2>
-    <p class="subtitle">Cada aplicación puede ser utilizada por miles de usuarios registrados</p>
 
-    <input type="text" id="buscador" placeholder="Buscar aplicación...">
+<body>
 
-    <div class="filters">
-        <button class="active" data-filtro="todos">Todos</button>
-        <button data-filtro="salud">Salud</button>
-        <button data-filtro="educacion">Educación</button>
-        <button data-filtro="finanzas">Finanzas</button>
-        <button data-filtro="retail">Retail</button>
-        <button data-filtro="logistica">Logística</button>
-        <button data-filtro="gobierno">Gobierno</button>
-    </div>
-</section>
-
-<section class="grid-apps">
-    {% for app in apps %}
-    <div class="app-card" data-categoria="{{ app.categoria|lower }}">
-        <div class="app-card-top">
-            <span class="app-icon">{{ app.icono }}</span>
-            <span class="badge badge-{{ app.categoria|lower }}">{{ app.categoria }}</span>
-        </div>
-        <h3>{{ app.nombre }}</h3>
-        <p class="app-usuarios">{{ app.cantidad_usuarios }} usuario{{ 's' if app.cantidad_usuarios != 1 else '' }}</p>
-        <div class="app-planes">
-            {% for plan in app.planes %}
-            <span class="plan plan-{{ plan|lower }}">{{ plan }}</span>
-            {% endfor %}
+<header class="header">
+    <div class="logo">
+        <div class="arriba">
+            <h2>InnovaSoft</h2>
+            <p>Software · Ideas · Soluciones</p>
         </div>
     </div>
-    {% endfor %}
-</section>
+
+    <nav>
+        <a href="{{ url_for('home') }}">Inicio</a>
+        <a href="{{ url_for('aplicaciones') }}">Aplicaciones</a>
+
+        {% if session.get('es_admin') %}
+            <a href="{{ url_for('usuarios') }}">Usuarios</a>
+            <a href="{{ url_for('accesos') }}">Accesos Globales</a>
+        {% else %}
+            <a href="{{ url_for('accesos') }}">Mis Accesos</a>
+        {% endif %}
+    </nav>
+</header>
+
+<main class="container">
+
+    <section class="header-section">
+        <p class="eyebrow">APLICACIONES</p>
+        <h2>Aplicaciones de la plataforma</h2>
+        <p class="subtitle">Seleccioná una aplicación para comenzar a utilizarla</p>
+    </section>
+
+    <section class="grid-apps">
+        {% for app in apps %}
+        <div class="app-card" data-categoria="{{ app.categoria|lower }}">
+            <div class="app-card-top">
+                <span class="app-icon">{{ app.icono }}</span>
+                <span class="badge badge-{{ app.categoria|lower }}">{{ app.categoria }}</span>
+            </div>
+
+            <h3>{{ app.nombre }}</h3>
+            <p class="app-usuarios">{{ app.cantidad_usuarios }} usuario{{ 's' if app.cantidad_usuarios != 1 else '' }}</p>
+            
+            <div class="app-planes">
+                {% for plan in app.planes %}
+                <span class="plan plan-{{ plan|lower }}">{{ plan }}</span>
+                {% endfor %}
+            </div>
+
+            <!-- FORMULARIO PARA ELEGIR / USAR LA APLICACIÓN -->
+            <form action="{{ url_for('usar_app') }}" method="POST" style="margin-top: 16px;">
+                <input type="hidden" name="nombre_app" value="{{ app.nombre }}">
+                <button type="submit" class="submit-btn" style="width: 100%; padding: 10px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer;">
+                    Usar aplicación
+                </button>
+            </form>
+
+        </div>
+        {% endfor %}
+    </section>
+
+</main>
+
+</body>
+</html>

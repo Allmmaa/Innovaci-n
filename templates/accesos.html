@@ -1,24 +1,79 @@
-<section class="header-section">
-    <h2>Registro de accesos</h2>
-    <input type="text" placeholder="Buscar por usuario o aplicación...">
-</section>
+<!DOCTYPE html>
+<html lang="es">
 
-<!-- PROGRAMAR BUCLE CON my.obtener_registro_accesos() -->
-<table>
-    <thead>
-        <tr>
-            <th>Usuario</th>
-            <th>Aplicación</th>
-            <th>Fecha de acceso</th>
-            <th>Tipo de servicio</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Valentina Ramos</td>
-            <td>MedTrack Pro</td>
-            <td>15 ene 2026</td>
-            <td><span class="badge">Premium</span></td>
-        </tr>
-    </tbody>
-</table>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='usuarios.css') }}">
+    <title>InnovaSoft - Registro de Accesos</title>
+</head>
+
+<body>
+
+<header class="header">
+    <div class="logo">
+        <div class="arriba">
+            <h2>InnovaSoft</h2>
+            <p>Software · Ideas · Soluciones</p>
+        </div>
+    </div>
+
+    <nav>
+        <a href="{{ url_for('home') }}">Inicio</a>
+        <a href="{{ url_for('aplicaciones') }}">Aplicaciones</a>
+
+        {% if session.get('es_admin') %}
+            <a href="{{ url_for('usuarios') }}">Usuarios</a>
+            <a href="{{ url_for('accesos') }}">Accesos Globales</a>
+        {% else %}
+            <a href="{{ url_for('accesos') }}">Mis Accesos</a>
+        {% endif %}
+    </nav>
+</header>
+
+<main class="container">
+
+    <section class="header-section">
+        <div>
+            {% if session.get('es_admin') %}
+                <h2>Registro general de accesos (Admin)</h2>
+                <p>Historial global de aplicaciones elegidas por cada cliente</p>
+            {% else %}
+                <h2>Mis Accesos</h2>
+                <p>Historial de aplicaciones que has seleccionado</p>
+            {% endif %}
+        </div>
+        <input type="text" placeholder="Buscar por usuario o aplicación...">
+    </section>
+
+    <div class="table-container">
+        <table>
+            <thead> 
+                <tr>
+                    {% if session.get('es_admin') %}
+                        <th>Cliente / Usuario</th>
+                    {% endif %}
+                    <th>Aplicación seleccionada</th>
+                    <th>Fecha de acceso</th>
+                    <th>Tipo de servicio</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for registro in accesos %}
+                <tr>
+                    {% if session.get('es_admin') %}
+                        <td>{{ registro.usuario }}</td>
+                    {% endif %}
+                    <td>{{ registro.aplicacion }}</td>
+                    <td>{{ registro.fecha }}</td>
+                    <td>{{ registro.tipo_servicio }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</main>
+
+</body>
+</html>

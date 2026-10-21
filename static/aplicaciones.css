@@ -1,4 +1,59 @@
 /* ===== Header de la sección ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #eef8ff;
+    color: #17344d;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+
+    width: 360px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.arriba h2 {
+    font-size: 15px;
+    font-weight: normal;
+    margin-bottom: 3px;
+}
+
+
+.arriba p {
+    font-size: 11px;
+    color: #4c86aa;
+}
+
+nav {
+    display: flex;
+    gap: 35px;
+    align-items: center;
+}
+
+nav a {
+    text-decoration: none;
+    color: #172d40;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #459bc5;
+}
+
+
+
 .header-section {
     text-align: center;
     padding: 48px 24px 24px;

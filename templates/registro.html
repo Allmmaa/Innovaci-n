@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrarse - InnovaSoft</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='registro.css') }}">
+</head>
+<body>
+
+    <div class="container" style="display: flex; justify-content: center; align-items: center; min-height: 80vh;">
+        <div class="modal-card">
+
+            <div class="modal-header">
+                <h3>Crear una cuenta</h3>
+                <p>Registrate para acceder a InnovaSoft.</p>
+            </div>
+
+            {% if error %}
+                <div style="background-color: #fef2f2; border: 1px solid #fecaca; color: #dc2626; padding: 10px; border-radius: 8px; font-size: 13px; margin-bottom: 16px; text-align: center;">
+                    {{ error }}
+                </div>
+            {% endif %}
+
+            <form action="{{ url_for('registro') }}" method="POST" class="auth-form">
+
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Correo electrónico:</label>
+                    <input type="email" id="email" name="email" placeholder="correo@ejemplo.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Contraseña:</label>
+                    <div class="password-input-wrapper">
+                        <input type="password" id="password" name="password" placeholder="••••••••" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">Registrarme</button>
+
+            </form>
+
+            <div class="demo-credentials" style="text-align: center;">
+                <span class="credentials-title">¿Ya tenés una cuenta?</span>
+                <a href="{{ url_for('login') }}" style="color: #0284c7; text-decoration: none; font-weight: 600;">Iniciar sesión</a>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

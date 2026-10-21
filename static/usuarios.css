@@ -6,6 +6,60 @@ body {
     color: #425466;
 }
 
+.header {
+    height: 65px;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 100px;
+
+    background-color: #eef8ff;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+
+    width: 360px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.arriba h2 {
+    font-size: 15px;
+    font-weight: normal;
+    margin-bottom: 3px;
+}
+
+
+.arriba p {
+    font-size: 11px;
+    color: #4c86aa;
+}
+
+nav {
+    display: flex;
+    gap: 35px;
+    align-items: center;
+}
+
+nav a {
+    text-decoration: none;
+    color: #172d40;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #459bc5;
+}
+
 .container {
     max-width: 1100px;
     margin: 0 auto;
@@ -33,12 +87,12 @@ body {
 .header-section input {
     width: 280px;
     padding: 12px 16px;
-    border: 1px solid #b9dff2;
+    border: 1px solid #55aad4;
     border-radius: 10px;
     outline: none;
     font-size: 14px;
     background-color: #ffffff;
-}
+} 
 
 .header-section input:focus {
     border-color: #55bde8;
