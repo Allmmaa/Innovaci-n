@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Innovasoft - Gestión Inteligente</title>
+    <title>{% block title %}Innovasoft - Gestión Inteligente{% endblock %}</title>
 </head>
 <body>
     <header>
@@ -13,20 +13,32 @@
         </div>
         <nav>
             <ul>
-                <li><a href="index.html">Plataforma</a></li>
-                <li><a href="aplicaciones.html">Aplicaciones</a></li>
-                <li><a href="usuarios.html">Usuarios</a></li>
-                <li><a href="accesos.html">Accesos</a></li>
+                <li><a href="{{ url_for('home') }}">Plataforma</a></li>
+                <li><a href="{{ url_for('aplicaciones') }}">Aplicaciones</a></li>
+            
+                {% if session.get('usuario_id') %}
+                {% if session.get('es_admin') %}
+                    <li><a href="{{ url_for('usuarios') }}">Usuarios</a></li>
+                    <li><a href="{{ url_for('accesos') }}">Accesos globales</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('accesos') }}">Mis Accesos</a></li>
+                {% endif %}
             </ul>
         </nav>
         <div class="user-profile">
-            <!-- PROGRAMAR: Usuario dinámico -->
-            <span>Valentina Ramos</span>
+            {% if session.get('es_admin') %}
+                <span>{{ session.get('usuario_nombre', 'Administrador') }}</span> | 
+                <a href="{{ url_for('logout') }}">Cerrar sesión</a>
+            {% else %}
+                <a href="{{ url_for('login') }}">Iniciar sesión</a>
+            {% endif %}
         </div>
     </header>
 
     <main>
-        <!-- Aquí se renderiza cada vista -->
+        {% block content %}
+        <!-- Aquí se renderizará el contenido de cada vista -->
+        {% endblock %}
     </main>
 </body>
 </html>

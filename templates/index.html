@@ -19,28 +19,27 @@
         </div>
 
         <nav>
-            {% if session.get("admin") %}
+            <a href="{{ url_for('home') }}">Inicio</a>
             <a href="{{ url_for('aplicaciones') }}">Aplicaciones</a>
-            <a href="{{ url_for('usuarios') }}">Usuarios</a>
-            <a href="{{ url_for('accesos') }}">Accesos</a>
-            <a href="{{ url_for('logout') }}">Cerrar sesión</a>
+
+            {% if session.get("es_admin") %}
+                <a href="{{ url_for('usuarios') }}">Usuarios</a>
+                <a href="{{ url_for('accesos') }}">Accesos</a>
+                <a href="{{ url_for('logout') }}">Cerrar sesión ({{ session.get('usuario_nombre') }})</a>
             {% else %}
-            <a href="{{ url_for('login') }}">Iniciar sesión</a>
+                <a href="{{ url_for('login') }}">Iniciar sesión</a>
             {% endif %}
         </nav>
     </header>
 
     <section class="hero">
 
-        {% if session.get("admin") %}
+        {% if session.get("es_admin") %}
             <!-- VISTA CUANDO INICIAS SESIÓN -->
-            <h2>Panel de administración</h2>
+            <h2>Bienvenido/a, {{ session.get('usuario_nombre') }}</h2>
+            <p>Panel de Administración y Control Global</p>
 
-            <div class="medio">
-                <a href="{{ url_for('aplicaciones') }}">Aplicaciones</a>
-                <a href="{{ url_for('usuarios') }}">Usuarios</a>
-                <a href="{{ url_for('accesos') }}">Accesos</a>
-            </div>
+          
 
         {% else %}
             <!-- VISTA PÚBLICA (SIN LOGUEAR) -->
@@ -54,11 +53,9 @@
                 la plataforma, con control total sobre usuarios, servicios contratados y
                 sectores atendidos.
             </p>
-
-            
         {% endif %}
 
-        <!-- Métricas (Visibles para todos o muévelas dentro del 'if' según prefieras) -->
+        <!-- Métricas (Visibles para todos) -->
         <div class="baja">
             <div>
                 <h3>{{ num_apps }}</h3>

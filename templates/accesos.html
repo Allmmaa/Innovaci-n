@@ -52,8 +52,10 @@
                 <tr>
                     {% if session.get('es_admin') %}
                         <th>Cliente / Usuario</th>
+                        <th>Email</th>
                     {% endif %}
                     <th>Aplicación seleccionada</th>
+                    <th>Sector</th>
                     <th>Fecha de acceso</th>
                     <th>Tipo de servicio</th>
                 </tr>
@@ -62,10 +64,12 @@
                 {% for registro in accesos %}
                 <tr>
                     {% if session.get('es_admin') %}
-                        <td>{{ registro.usuario }}</td>
+                        <td>{{ registro.Usuario.nombre if registro.Usuario else 'Sin nombre' }}</td>
+                        <td>{{ registro.Usuario.email if registro.Usuario else 'Sin email' }}</td>
                     {% endif %}
-                    <td>{{ registro.aplicacion }}</td>
-                    <td>{{ registro.fecha }}</td>
+                    <td>{{ registro.aplicacion.nombre if registro.aplicacion else 'Sin app' }}</td>
+                    <td>{{ registro.aplicacion.sector if registro.aplicacion else '-' }}</td>
+                    <td>{{ registro.fecha_acceso }}</td>
                     <td>{{ registro.tipo_servicio }}</td>
                 </tr>
                 {% endfor %}
