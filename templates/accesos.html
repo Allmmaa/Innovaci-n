@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='usuarios.css') }}">
+    <title>InnovaSoft - Registro de Accesos</title>
+</head>
+
+<body>
+
+<header class="header">
+    <div class="logo">
+        <div class="arriba">
+            <h2>InnovaSoft</h2>
+            <p>Software · Ideas · Soluciones</p>
+        </div>
+    </div>
+
+    <nav>
+        <a href="{{ url_for('home') }}">Inicio</a>
+        <a href="{{ url_for('aplicaciones') }}">Aplicaciones</a>
+
+        {% if session.get('es_admin') %}
+            <a href="{{ url_for('usuarios') }}">Usuarios</a>
+            <a href="{{ url_for('accesos') }}">Accesos Globales</a>
+        {% else %}
+            <a href="{{ url_for('accesos') }}">Mis Accesos</a>
+        {% endif %}
+    </nav>
+</header>
+
+<main class="container">
+
+    <section class="header-section">
+        <div>
+            {% if session.get('es_admin') %}
+                <h2>Registro general de accesos (Admin)</h2>
+                <p>Historial global de aplicaciones elegidas por cada cliente</p>
+            {% else %}
+                <h2>Mis Accesos</h2>
+                <p>Historial de aplicaciones que has seleccionado</p>
+            {% endif %}
+        </div>
+        <input type="text" placeholder="Buscar por usuario o aplicación...">
+    </section>
+
+    <div class="table-container">
+        <table>
+            <thead> 
+                <tr>
+                    {% if session.get('es_admin') %}
+                        <th>Cliente / Usuario</th>
+                        <th>Email</th>
+                    {% endif %}
+                    <th>Aplicación seleccionada</th>
+                    <th>Sector</th>
+                    <th>Fecha de acceso</th>
+                    <th>Tipo de servicio</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for registro in accesos %}
+                <tr>
+                    {% if session.get('es_admin') %}
+                        <td>{{ registro.Usuario.nombre if registro.Usuario else 'Sin nombre' }}</td>
+                        <td>{{ registro.Usuario.email if registro.Usuario else 'Sin email' }}</td>
+                    {% endif %}
+                    <td>{{ registro.aplicacion.nombre if registro.aplicacion else 'Sin app' }}</td>
+                    <td>{{ registro.aplicacion.sector if registro.aplicacion else '-' }}</td>
+                    <td>{{ registro.fecha_acceso }}</td>
+                    <td>{{ registro.tipo_servicio }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</main>
+
+</body>
+</html>

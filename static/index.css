@@ -1,0 +1,206 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #eef8ff;
+    color: #17344d;
+}
+
+.header {
+    height: 65px;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 100px;
+
+    background-color: #eef8ff;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+
+    width: 360px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.arriba h2 {
+    font-size: 15px;
+    font-weight: normal;
+    margin-bottom: 3px;
+}
+
+.arriba p {
+    font-size: 11px;
+    color: #4c86aa;
+}
+
+
+nav {
+    display: flex;
+    gap: 35px;
+
+    align-items: center;
+}
+
+nav a {
+    text-decoration: none;
+
+    color: #172d40;
+
+    font-size: 13px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #459bc5;
+}
+
+
+.hero {
+    min-height: calc(100vh - 65px);
+
+    text-align: center;
+
+    padding-top: 140px;
+
+    /* efecto suave detrás del contenido */
+    background: radial-gradient(
+        circle,
+        #d4f1ff 0%,
+        #eef8ff 45%,
+        #eef8ff 75%
+    );
+}
+
+
+.hero-logo {
+    width: 90px;
+    height: 70px;
+
+    object-fit: contain;
+
+    margin-bottom: 45px;
+}
+
+
+
+.hero h1 {
+    font-size: 48px;
+
+    font-weight: normal;
+
+    line-height: 1.25;
+
+    color: #123a5a;
+
+    margin-bottom: 20px;
+}
+
+.hero h1 span {
+    display: block;
+
+    color: #4a9bc5;
+}
+
+
+.descripcion {
+    width: 600px;
+
+    max-width: 90%;
+
+    margin: auto;
+
+    font-size: 16px;
+
+    line-height: 1.8;
+
+    color: #4d82a3;
+}
+
+
+.medio {
+    margin-top: 28px;
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+}
+
+.medio button {
+    padding: 14px 25px;
+
+    border-radius: 11px;
+
+    border: none;
+
+    background-color: #4a9bc5;
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 14px;
+}
+
+.medio button:hover {
+    background-color: #378bb7;
+}
+
+
+.medio .button-white {
+    background-color: white;
+
+    color: #23405a;
+
+    border: 1px solid #a8d3eb;
+}
+
+
+.baja {
+    width: 580px;
+
+    max-width: 90%;
+
+    margin: 40px auto 0;
+
+    padding-top: 25px;
+
+    border-top: 1px solid #b8d9eb;
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 25px;
+}
+
+.baja h3 {
+    font-size: 30px;
+
+    font-weight: normal;
+
+    color: #459bc5;
+
+    margin-bottom: 5px;
+}
+
+.baja p {
+    font-size: 11px;
+
+    color: #477c9b;
+}
+

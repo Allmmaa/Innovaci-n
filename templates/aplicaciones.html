@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='aplicaciones.css') }}">
+    <title>InnovaSoft - Aplicaciones</title>
+</head>
+
+<body>
+
+<header class="header">
+    <div class="logo">
+        <div class="arriba">
+            <h2>InnovaSoft</h2>
+            <p>Software · Ideas · Soluciones</p>
+        </div>
+    </div>
+
+    <nav>
+        <a href="{{ url_for('home') }}">Inicio</a>
+        <a href="{{ url_for('aplicaciones') }}">Aplicaciones</a>
+
+        {% if session.get('rol') == 'admin' %}
+            <a href="{{ url_for('usuarios') }}">Usuarios</a>
+            <a href="{{ url_for('accesos') }}">Accesos Globales</a>
+        {% else %}
+            <a href="{{ url_for('accesos') }}">Mis Accesos</a>
+        {% endif %}
+    </nav>
+</header>
+
+<main class="container">
+
+    <section class="header-section">
+        <p class="eyebrow">APLICACIONES</p>
+        <h2>Aplicaciones de la plataforma</h2>
+        <p class="subtitle">Seleccioná una aplicación para comenzar a utilizarla</p>
+    </section>
+
+    <section class="grid-apps">
+        {% if apps %}
+            {% for app in apps %}
+            <div class="app-card" data-categoria="{{ (app.sector or 'General')|lower }}">
+                <div class="app-card-top">
+                    <!-- Contenedor con las imágenes en formato .jpg -->
+                    <div class="app-icon-container" style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;">
+                        {% if 'instagram' in app.nombre|lower %}
+                            <img src="{{ url_for('static', filename='img/instagram.jpg') }}" alt="Instagram" style="width: 100%; height: 100%; object-fit: contain;">
+                        {% elif 'erp' in app.nombre|lower or 'sistema' in app.nombre|lower %}
+                            <img src="{{ url_for('static', filename='img/sage.jpg') }}" alt="Sistema ERP" style="width: 100%; height: 100%; object-fit: contain;">
+                        {% elif 'crm' in app.nombre|lower or 'ventas' in app.nombre|lower %}
+                            <img src="{{ url_for('static', filename='img/monefy.jpg') }}" alt="CRM Ventas" style="width: 100%; height: 100%; object-fit: contain;">
+                        {% elif 'rrhh' in app.nombre|lower or 'gestión' in app.nombre|lower or 'gestion' in app.nombre|lower %}
+                            <img src="{{ url_for('static', filename='img/beatroute.jpg') }}" alt="Gestión de RRHH" style="width: 100%; height: 100%; object-fit: contain;">
+                        {% else %}
+                            <img src="{{ url_for('static', filename='img/default.jpg') }}" alt="Aplicación" style="width: 100%; height: 100%; object-fit: contain;">
+                        {% endif %}
+                    </div>
+                    <span class="badge badge-{{ (app.sector or 'general')|lower }}">{{ app.sector or 'General' }}</span>
+                </div>
+
+                <h3>{{ app.nombre }}</h3>
+                <p class="app-usuarios">Sector: {{ app.sector or 'General' }}</p>
+                
+                <div class="app-planes">
+                    <span class="plan plan-estandar">Disponible</span>
+                </div>
+
+                <!-- FORMULARIO PARA REGISTRAR EL ACCESO -->
+                <form action="{{ url_for('usar_app') }}" method="POST" style="margin-top: 16px;">
+                    <input type="hidden" name="id_aplicacion" value="{{ app.id_aplicacion }}">
+                    <input type="hidden" name="nombre_app" value="{{ app.nombre }}">
+                    <button type="submit" class="submit-btn" style="width: 100%; padding: 10px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer;">
+                        Usar aplicación
+                    </button>
+                </form>
+
+            </div>
+            {% endfor %}
+        {% else %}
+            <p style="text-align: center; color: #666; grid-column: 1 / -1; margin-top: 20px;">
+                No se encontraron aplicaciones disponibles.
+            </p>
+        {% endif %}
+    </section>
+
+</main>
+
+</body>
+</html>

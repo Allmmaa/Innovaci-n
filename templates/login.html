@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+</head>
+
+<body><div class="cuadrado">
+
+    <h2>InnovaSoft</h2>
+    <h1>Iniciar sesión</h1>
+    <p>Ingresá con tus credenciales de InnovaSoft</p>
+    <hr>
+
+    <!-- MOSTRAR MENSAJES FLASH (por ejemplo: mail no registrado) -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <p style="color: red; text-align: center; font-size: 0.9rem;">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <!-- ERROR TRADICIONAL -->
+    {% if error %}
+        <p style="color: red; text-align: center; font-size: 0.9rem;">{{ error }}</p>
+    {% endif %}
+
+    <form action="{{ url_for('login') }}" method="POST">
+
+        <input 
+            type="email" 
+            name="email" 
+            placeholder="Correo electrónico" 
+            required
+        >
+
+        <input 
+            type="password" 
+            name="password" 
+            placeholder="Contraseña" 
+            required
+        >
+
+        <button type="submit">Ingresar</button>
+
+    </form>
+
+    <!-- ENLACE A REGISTRO SI NO TIENE CUENTA -->
+    <div style="text-align: center; margin-top: 15px;">
+        <p style="font-size: 0.9rem;">¿No tenés una cuenta? <a href="{{ url_for('registro') }}" style="color: #2563eb; text-decoration: underline;">Registrate acá</a></p>
+    </div>
+
+</div>
+</body>
+</html>
