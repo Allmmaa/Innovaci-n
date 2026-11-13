@@ -7,19 +7,19 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
 </head>
 
-<<<<<<< HEAD
+
 <body><div class="cuadrado">
-=======
+
 <body>
 <div class="cuadrado">
->>>>>>> cefa591bf970ed7b6d8e4be27126b283370df1a3
+
 
     <h2>InnovaSoft</h2>
     <h1>Iniciar sesión</h1>
     <p>Ingresá con tus credenciales de InnovaSoft</p>
     <hr>
 
-<<<<<<< HEAD
+
     <!-- MOSTRAR MENSAJES FLASH (por ejemplo: mail no registrado) -->
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
@@ -30,8 +30,8 @@
     {% endwith %}
 
     <!-- ERROR TRADICIONAL -->
-=======
->>>>>>> cefa591bf970ed7b6d8e4be27126b283370df1a3
+
+
     {% if error %}
         <p style="color: red; text-align: center; font-size: 0.9rem;">{{ error }}</p>
     {% endif %}
