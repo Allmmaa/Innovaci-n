@@ -13,8 +13,7 @@
     <header class="header">
         <div class="logo">
             <div class="arriba">
-                <h2>InnovaSoft</h2>
-                <p>Software · Ideas · Soluciones</p>
+                
                 <img src="{{ url_for('static', filename='img/Logo.jpg') }}" alt="InnovaSoft Logo" class="logo-img">
             </div>
         </div>
@@ -58,28 +57,7 @@
             </p>
         {% endif %}
 
-        <!-- Métricas (Visibles para todos) -->
-        <div class="baja">
-            <div>
-                <h3>{{ num_apps }}</h3>
-                <p>Aplicaciones</p>
-            </div>
-
-            <div>
-                <h3>{{ num_usuarios }}</h3>
-                <p>Usuarios registrados</p>
-            </div>
-
-            <div>
-                <h3>{{ num_accesos }}</h3>
-                <p>Accesos activos</p>
-            </div>
-
-            <div>
-                <h3>{{ num_sectores }}</h3>
-                <p>Sectores</p>
-            </div>
-        </div>
+       
 
     </section>
 
