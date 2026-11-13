@@ -299,10 +299,13 @@ tbody tr:hover {
 .credentials-detail {
     display: flex;
     justify-content: space-between;
+<<<<<<< HEAD
 }
 
 .logo img, .logo-img {
     height: 55px;
     width: auto;
     display: block;
+=======
+>>>>>>> cefa591bf970ed7b6d8e4be27126b283370df1a3
 }

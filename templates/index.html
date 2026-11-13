@@ -15,11 +15,14 @@
             <div class="arriba">
                 <h2>InnovaSoft</h2>
                 <p>Software · Ideas · Soluciones</p>
+<<<<<<< HEAD
 
         <img src="{{ url_for('static', filename='img/logo.jpg') }}" alt="InnovaSoft Logo" class="logo-img">
     </a>
 </div>
 
+=======
+>>>>>>> cefa591bf970ed7b6d8e4be27126b283370df1a3
             </div>
         </div>
 
@@ -33,8 +36,12 @@
                 <a href="{{ url_for('logout') }}">Cerrar sesión ({{ session.get('usuario_nombre') }})</a>
             {% else %}
                 <a href="{{ url_for('login') }}">Iniciar sesión</a>
+<<<<<<< HEAD
          <a href="{{ url_for('registro') }}" class="btn-registro">Registrarse</a>
                 {% endif %}
+=======
+            {% endif %}
+>>>>>>> cefa591bf970ed7b6d8e4be27126b283370df1a3
         </nav>
     </header>
 
@@ -61,6 +68,31 @@
             </p>
         {% endif %}
 
+<<<<<<< HEAD
+=======
+        <!-- Métricas (Visibles para todos) -->
+        <div class="baja">
+            <div>
+                <h3>{{ num_apps }}</h3>
+                <p>Aplicaciones</p>
+            </div>
+
+            <div>
+                <h3>{{ num_usuarios }}</h3>
+                <p>Usuarios registrados</p>
+            </div>
+
+            <div>
+                <h3>{{ num_accesos }}</h3>
+                <p>Accesos activos</p>
+            </div>
+
+            <div>
+                <h3>{{ num_sectores }}</h3>
+                <p>Sectores</p>
+            </div>
+        </div>
+>>>>>>> cefa591bf970ed7b6d8e4be27126b283370df1a3
 
     </section>
 
