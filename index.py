@@ -145,14 +145,12 @@ def accesos():
 
     return render_template("accesos.html", accesos=accesos_list)
 
-
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
         email = request.form.get("email")
         password = request.form.get("password")
 
-        # Corregido a 'Usuario'
         respuesta = supabase.table("Usuario").select("*").eq("email", email).execute()
         usuarios = respuesta.data
 
@@ -161,19 +159,30 @@ def login():
             return redirect(url_for("registro"))
 
         usuario = usuarios[0]
+        # Lee la clave sin importar si la columna se llama 'password' o 'contraseña'
+        clave_guardada = usuario.get("password") or usuario.get("contraseña") or ""
 
-        if check_password_hash(usuario.get("password", ""), password):
+        # Verifica si la clave está encriptada; si no lo está, compara el texto directo
+        es_valida = False
+        if clave_guardada.startswith(("scrypt:", "pbkdf2:")):
+            es_valida = check_password_hash(clave_guardada, password)
+        else:
+            es_valida = (clave_guardada == password)
+
+        if es_valida:
             session["usuario_id"] = usuario["id_usuario"]
             session["nombre"] = usuario["nombre"]
             session["es_admin"] = (usuario.get("rol") == "admin")
             
             flash("¡Bienvenido/a!", "success")
-            return redirect(url_for("home"))
+            if session["es_admin"]:
+                return redirect(url_for("home"))
+            else:
+                return redirect(url_for("accesos"))
         else:
             flash("Contraseña incorrecta.", "danger")
 
     return render_template("login.html")
-
 
 @app.route("/logout")
 def logout():

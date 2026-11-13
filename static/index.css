@@ -204,3 +204,8 @@ nav a:hover {
     color: #477c9b;
 }
 
+.logo img, .logo-img {
+    height: 55px;
+    width: auto;
+    display: block;
+}

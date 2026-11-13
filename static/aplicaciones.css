@@ -205,3 +205,9 @@ nav a:hover {
 .plan-básico    { background: #f3f4f6; color: #4b5563; }
 .plan-estándar  { background: #e0e7ff; color: #4338ca; }
 .plan-premium   { background: #fef3c7; color: #b45309; }
+
+.logo img, .logo-img {
+    height: 55px;
+    width: auto;
+    display: block;
+}
