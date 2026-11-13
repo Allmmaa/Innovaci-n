@@ -15,14 +15,7 @@
             <div class="arriba">
                 <h2>InnovaSoft</h2>
                 <p>Software · Ideas · Soluciones</p>
-<<<<<<< HEAD
-
-        <img src="{{ url_for('static', filename='img/logo.jpg') }}" alt="InnovaSoft Logo" class="logo-img">
-    </a>
-</div>
-
-=======
->>>>>>> cefa591bf970ed7b6d8e4be27126b283370df1a3
+                <img src="{{ url_for('static', filename='img/logo.jpg') }}" alt="InnovaSoft Logo" class="logo-img">
             </div>
         </div>
 
@@ -34,28 +27,25 @@
                 <a href="{{ url_for('usuarios') }}">Usuarios</a>
                 <a href="{{ url_for('accesos') }}">Accesos</a>
                 <a href="{{ url_for('logout') }}">Cerrar sesión ({{ session.get('usuario_nombre') }})</a>
+            {% elif session.get("usuario_id") %}
+                <a href="{{ url_for('accesos') }}">Mis Accesos</a>
+                <a href="{{ url_for('logout') }}">Cerrar sesión ({{ session.get('usuario_nombre') }})</a>
             {% else %}
                 <a href="{{ url_for('login') }}">Iniciar sesión</a>
-<<<<<<< HEAD
-         <a href="{{ url_for('registro') }}" class="btn-registro">Registrarse</a>
-                {% endif %}
-=======
+                <a href="{{ url_for('registro') }}" class="btn-registro">Registrarse</a>
             {% endif %}
->>>>>>> cefa591bf970ed7b6d8e4be27126b283370df1a3
         </nav>
     </header>
 
     <section class="hero">
 
         {% if session.get("es_admin") %}
-            <!-- VISTA CUANDO INICIAS SESIÓN -->
+            <!-- VISTA CUANDO INICIAS SESIÓN COMO ADMIN -->
             <h2>Bienvenido/a, {{ session.get('usuario_nombre') }}</h2>
             <p>Panel de Administración y Control Global</p>
 
-          
-
         {% else %}
-            <!-- VISTA PÚBLICA (SIN LOGUEAR) -->
+            <!-- VISTA PÚBLICA / EMPLEADO -->
             <h1>
                 Gestión inteligente de
                 <span>aplicaciones y usuarios</span>
@@ -68,8 +58,6 @@
             </p>
         {% endif %}
 
-<<<<<<< HEAD
-=======
         <!-- Métricas (Visibles para todos) -->
         <div class="baja">
             <div>
@@ -92,7 +80,6 @@
                 <p>Sectores</p>
             </div>
         </div>
->>>>>>> cefa591bf970ed7b6d8e4be27126b283370df1a3
 
     </section>
 
